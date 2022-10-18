@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: goldilocks
+  namespace: flux-system
+spec:
+  targetNamespace: resource-audit
+  chart:
+    spec:
+      chart: goldilocks
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds
+      version: 6.1.3
+  interval: 10m0s
+  values:
+    controller:
+      deployment:
+        additionalLabels:
+          app: goldilocks
+          generalized_service_type: observability
+          generalized_service: goldilocks
+          release: monitoring-prometheus-operator
+    vpa:
+      enabled: true

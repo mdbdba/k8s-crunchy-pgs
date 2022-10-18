@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: otel-collector
+  namespace: flux-system
+spec:
+  targetNamespace: monitoring
+  chart:
+    spec:
+      chart: opentelemetry-collector
+      sourceRef:
+        kind: HelmRepository
+        name: open-telemetry
+      version: 0.26.0
+  interval: 10m0s
+  values:
+    mode: deployment
+    fullnameOverride: "otel-collector"
+    config:
+      receivers:
+        prometheus: null
+        zipkin: null
+
+      processors:
+        batch:
+          send_batch_size: 10000
+          timeout: 10s
+
+      exporters:
+        logging:
+          logLevel: debug
+        jaeger:
+          endpoint: tracing-tempo.tracing.svc:14250
+          tls:
+            insecure: true
+
+      service:
+        pipelines:
+          traces:
+            receivers:
+              - jaeger
+              - otlp
+            processors:
+              - batch
+            exporters:
+              - logging
+              - jaeger
+          metrics: null
+          logs: null
