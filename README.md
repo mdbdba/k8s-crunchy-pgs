@@ -1,5 +1,8 @@
 # k8s-crunchy-pgs
-small k8s cluster to be used for crunchy postgresql demos.
+small k8s cluster to be used for crunchy postgresql demos. Implemented with flux, so to get up and running for yourself:
+* fork this repo to one of your own.
+* have `k3d` (https://k3d.io/) and `flux` (https://fluxcd.io/flux/installation/) installed.
+* when bootstrapping your cluster use the name of your forked repo instead of mine in the repository argument.
 
 Create the cluster
 ```shell
@@ -35,6 +38,7 @@ kubectl cluster-info
 ```
 
 # Boostrap (this'll take a few minutes)
+# Remember to use the name of your repo in the repository argument.
 ```shell
 flux bootstrap github \
 --owner=$GITHUB_USER \
