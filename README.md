@@ -4,7 +4,7 @@ small k8s cluster to be used for crunchy postgresql demos. Implemented with flux
 * have `k3d` (https://k3d.io/) and `flux` (https://fluxcd.io/flux/installation/) installed.
 * when bootstrapping your cluster use the name of your forked repo instead of mine in the repository argument.
 
-Create the cluster
+# Create the cluster
 ```shell
 ❯ k3d cluster create --config=k3d.yaml
 INFO[0000] Using config file k3d.yaml (k3d.io/v1alpha4#simple) 
