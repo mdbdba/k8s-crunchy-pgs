@@ -38,7 +38,7 @@ kubectl cluster-info
 ```
 
 # Boostrap (this'll take a few minutes)
-# Remember to use the name of your repo in the repository argument.
+*Remember to use the name of your repo in the repository argument.*
 ```shell
 flux bootstrap github \
 --owner=$GITHUB_USER \
