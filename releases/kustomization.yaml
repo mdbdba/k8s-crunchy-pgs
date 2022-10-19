@@ -7,3 +7,4 @@ resources:
 - ./goldilocks/ks.yaml
 - ./otel-collector/ks.yaml
 - ./pgo/ks.yaml
+- ./postgresql/ks.yaml
